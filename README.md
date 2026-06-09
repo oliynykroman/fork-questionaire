@@ -2,7 +2,7 @@
 
 ## GitHub Pages
 
-1. Запуш код у репозиторій `shuvaiev` на гілку `main`.
+1. Запуш код у репозиторій `fork-questionaire` на гілку `main`.
 2. У GitHub відкрий `Settings` -> `Pages`.
 3. У полі `Source` вибери `GitHub Actions`.
 4. Після push workflow `Deploy Angular app to GitHub Pages` збере застосунок і задеплоїть його.
@@ -13,7 +13,7 @@
 npm run build:github-pages
 ```
 
-Збірка використовує base href `/shuvaiev/`, тому якщо репозиторій матиме іншу назву, зміни `baseHref` у `angular.json`.
+Збірка використовує base href `/fork-questionaire/`, тому якщо репозиторій матиме іншу назву, зміни `baseHref` у `angular.json`.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
 

@@ -71,7 +71,7 @@
               ]
             },
             "github-pages": {
-              "baseHref": "/shuvaiev/",
+              "baseHref": "/fork-questionaire/",
               "outputHashing": "all",
               "ssr": false,
               "prerender": false,
