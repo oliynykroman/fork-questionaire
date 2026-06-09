@@ -1,0 +1,287 @@
+@if (activeQuestion(); as question) {
+  <!--  intro-->
+  @if (question.questionType === stepTypeEnum.INTRO) {
+    <div class="intro">
+      <div class="description">
+        <div class="description-content">
+          <h2 class="description-title">{{ question.title }}</h2>
+          <div [innerHTML]="question.text | appSafeHtml"></div>
+          @for (field of question.controls; track field.value) {
+            @if (field.value) {
+              <mat-form-field appearance="outline" class="no-margin-bottom">
+                <input matInput value="{{field.value}}" readonly/>
+                @if (field.suffixLabel) {
+                  <span matSuffix class="suffix">{{ field.suffixLabel }}</span>
+                }
+              </mat-form-field>
+            }
+          }
+          @if (question.impact) {
+            <div class="description-impact">
+              <p><strong>{{ question.impact }}%</strong><span> Потенційний вплив відповіді</span></p>
+            </div>
+          }
+        </div>
+        <div class="description-button">
+          @if (isFirstTopic && !isLastTopic) {
+            <button type="button" mat-flat-button class="question-button" (click)="next(question)">Далі</button>
+          } @else {
+            <div class="button-group">
+              <button type="button" mat-stroked-button class="question-button" (click)="prev(question)">Назад
+              </button>
+              <button type="button" mat-flat-button class="question-button" (click)="next(question)">Далі</button>
+            </div>
+          }
+        </div>
+      </div>
+      @if (question.media) {
+        <div class="author">
+          <h3>{{ question.media.title }}</h3>
+          <p class="name">Автор фото: {{ question.media.author }}</p>
+        </div>
+        <div class="media">
+          @if (question.media.size.width; as width) {
+            <img [ngSrc]="question.media.mediaPath" [alt]="question.media.alt"
+                 [width]="1080"
+                 [height]="878"
+                 priority>
+          }
+        </div>
+      }
+    </div>
+  }
+  <!--question-->
+  @if (question.questionType === stepTypeEnum.QUESTION) {
+    @if (formQuestionsList() && formGroup) {
+      <div class="question">
+        <div class="content">
+          <div class="body" #scrollable>
+            <h2 class="page-title">{{ activeTopic.name }}</h2>
+            <app-progress-bar
+              [value]="activeQuestionIndex()"
+              [total]="topicTotalQuestions()"
+              class="question-progress-bar"
+            ></app-progress-bar>
+            @if (activeQuestion().title) {
+              <div [innerHTML]="activeQuestion().title | appSafeHtml" class="question-group-title"></div>
+            }
+            @if (activeQuestion().text) {
+              <div [innerHTML]="activeQuestion().text | appSafeHtml" class="question-group-description"></div>
+            }
+            <form [formGroup]="formGroup" autocomplete="off">
+              <div class="controls" formGroupName="controls">
+                @for (field of formQuestionsList(); track field.name) {
+                  @if (field.title) {
+                    <div [innerHTML]="field.title | appSafeHtml" class="question-title"></div>
+                  }
+                  @if (field.text) {
+                    <div [innerHTML]="field.text | appSafeHtml" class="question-description"></div>
+                  }
+                  @switch (field.type) {
+                    <!-- date range -->
+                    @case (FormControlTypeEnum.DATE_RANGE) {
+                      <app-date-range
+                        [element]="field"
+                        [control]="formGroup.controls['controls'].get(field.name)"
+                        (triggerSaveEvent)="saveOnDemand($event)"
+                      ></app-date-range>
+                    }
+                    <!--select-->
+                    @case (FormControlTypeEnum.SELECT) {
+                      <app-select
+                        [element]="field"
+                        [control]="formGroup.controls['controls'].get(field.name)"
+                        (triggerSaveEvent)="saveOnDemand($event)"
+                      ></app-select>
+                    }
+                    <!-- text -->
+                    @case (FormControlTypeEnum.TEXT) {
+                      <app-text
+                        [element]="field"
+                        [control]="formGroup.controls['controls'].get(field.name)"
+                        (triggerSaveEvent)="saveOnDemand($event)"
+                      ></app-text>
+                      @if (question.recalculateButton && field.uniqueName === 'venueownvalue') {
+                        <button type="button" mat-stroked-button class="recalculate-button"
+                                (click)="recalculateVenueEmission(field)">{{question.recalculateButton}}</button>
+                      }
+                    }
+                    @case (FormControlTypeEnum.NUMBER) {
+                      <app-number
+                        [element]="field"
+                        [control]="formGroup.controls['controls'].get(field.name)"
+                        (triggerSaveEvent)="saveOnDemand($event)"
+                      ></app-number>
+                    }
+                    @case (FormControlTypeEnum.TEXTAREA) {
+                      <app-textarea
+                        [element]="field"
+                        [control]="formGroup.controls['controls'].get(field.name)"
+                        (triggerSaveEvent)="saveOnDemand($event)"
+                      ></app-textarea>
+                    }
+                    <!-- radio -->
+                    @case (FormControlTypeEnum.RADIO) {
+                      <app-radio
+                        [element]="field"
+                        [control]="formGroup.controls['controls'].get(field.name)"
+                        (triggerSaveEvent)="saveOnDemand($event)"
+                      ></app-radio>
+                    }
+                    <!--checkbox -->
+                    @case (FormControlTypeEnum.CHECKBOX) {
+                      <app-checkbox
+                        [element]="field"
+                        (updateCheckbox)="updateOnlySingeCheckbox($event)"
+                        [control]="formGroup.controls['controls'].get(field.name)"
+                        (triggerSaveEvent)="saveOnDemand($event)"
+                      ></app-checkbox>
+                    }
+                    <!-- percentage -->
+                    @case (FormControlTypeEnum.PERCENTAGE) {
+                      @if (formGroup.controls['controls']) {
+                        <app-progress
+                          [element]="field"
+                          [control]="formGroup.controls['controls'].get(field.name)"
+                          [formControls]="formGroup.controls['controls']"
+                          [totalSum]="activeQuestion().totalSum"
+                          (triggerSaveEvent)="saveOnDemand($event)"
+                        ></app-progress>
+                      }
+                    }
+                    <!-- date -->
+                    @case (FormControlTypeEnum.DATE) {
+                      <app-date
+                        [element]="field"
+                        (updateEvent)="updateEventOnDemand()"
+                        [formControls]="formGroup.controls['controls']"
+                        [control]="formGroup.controls['controls'].get(field.name)"
+                        (triggerSaveEvent)="saveOnDemand($event)"
+                      ></app-date>
+                    }
+                  }
+                }
+              </div>
+            </form>
+
+          </div>
+          <div class="footer">
+            <div class="next-prev-btns">
+              <button type="button" mat-stroked-button class="question-button"
+                      [disabled]="isFirstTopic && isFirstTopicQuestion(question)"
+                      (click)="prev(question)">Назад
+              </button>
+              @if (isNewEvent() && isLastTopic && isLastTopicQuestion(question)) {
+                <button type="button" mat-flat-button class="question-button"
+                        [disabled]="formGroup.invalid"
+                        (click)="saveQuiz()">
+                  Далі
+                </button>
+              } @else {
+                @if (!isNewEvent() && isLastTopic && isLastTopicQuestion(question)) {
+                  <button type="button" mat-flat-button class="question-button"
+                          [disabled]="formGroup.invalid"
+                          (click)="saveQuiz()">
+                    Зберегти
+                  </button>
+                } @else {
+                  <button type="button" mat-flat-button class="question-button"
+                          [disabled]="formGroup.invalid"
+                          (click)="next(question)">Далі
+                  </button>
+                }
+              }
+              @if (question.totalSum) {
+                <div class="total-pipe">
+                  {{ formGroup | score }}
+                </div>
+              }
+            </div>
+            <button mat-button
+                    [disabled]="formGroup.valid"
+                    (click)="skipQuestion(question)"
+                    class="linear-button">
+              <mat-icon aria-hidden="true" fontIcon="chevron_right" iconPositionEnd></mat-icon>
+              Пропустити питання
+            </button>
+
+          </div>
+        </div>
+        @if (question.media) {
+          <div class="author">
+            <h3>{{ question.media.title }}</h3>
+            <p class="name">Автор фото: {{ question.media.author }}</p>
+          </div>
+          <div class="media">
+            <img [ngSrc]="question.media.mediaPath"
+                 [alt]="question.media.alt"
+                 [width]="1080"
+                 [height]="878"
+                 priority/>
+          </div>
+        }
+      </div>
+    }
+  }
+  <!--  conclusion-->
+  @if (question.questionType === stepTypeEnum.CONCLUSION) {
+    <div class="intro">
+      <section class="description">
+        @if (isLastTopic && skippedQuestionData()) {
+          <div class="description-content">
+            <h2 class="description-title">Будь ласка, завершіть усі кроки опитувальника.</h2>
+          </div>
+          <div class="description-button">
+            <div class="button-group">
+              <button type="button" mat-stroked-button class="question-button" (click)="returnToSkipQuestion()">До
+                пропущених питань
+              </button>
+              <button type="button" mat-flat-button class="question-button" (click)="saveAllQuiz()">Зберегти</button>
+            </div>
+          </div>
+        } @else {
+          <div class="description-content">
+            <h2 class="description-title">{{ question.title }}</h2>
+            <div [innerHTML]="question.text | appSafeHtml"></div>
+          </div>
+          <div class="description-button">
+            @if (isLastTopic) {
+              <div class="button-group">
+                <button type="button" mat-stroked-button class="question-button" (click)="prev(question)">Назад
+                </button>
+                <button type="button" mat-flat-button class="question-button" (click)="saveAllQuiz()">Завершити</button>
+              </div>
+            } @else {
+              <div class="button-group">
+                <button type="button" mat-stroked-button class="question-button" (click)="prev(question)">Назад
+                </button>
+                <button type="button" mat-flat-button class="question-button" (click)="next(question)">Далі</button>
+              </div>
+            }
+          </div>
+        }
+
+
+      </section>
+      @if (question.media) {
+        <div class="author">
+          <h3>{{ question.media.title }}</h3>
+          <p class="name">Автор фото: {{ question.media.author }}</p>
+        </div>
+        <div class="media">
+          @if (question.media.size.width; as width) {
+            <img [ngSrc]="question.media.mediaPath"
+                 [alt]="question.media.alt"
+                 [width]="1080"
+                 [height]="878"
+                 priority
+            />
+          }
+        </div>
+      }
+    </div>
+  }
+  @if (isLoaderShown()) {
+    <app-full-page-loader></app-full-page-loader>
+  }
+}

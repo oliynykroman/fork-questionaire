@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline">
+  <input matInput [matDatepicker]="picker" [formControl]="date" [min]="minDate() | toMomentDate" (dateChange)="triggerUpdateValue()"
+         [max]="maxDate() | toMomentDate">
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

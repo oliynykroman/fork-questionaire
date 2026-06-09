@@ -1,0 +1,110 @@
+.title {
+  margin-top: 0;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  @media screen and (min-width: 769px) {
+    margin-bottom: clamp(1.25rem, 6.557vw + -1.898rem, 2rem);
+    font-size: clamp(1.25rem, 2.732vw + -0.061rem, 1.563rem);
+  }
+}
+
+.event-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .event-item {
+    margin-bottom: 15px;
+    @media screen and (min-width: 951px) {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.event-top-controls {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .search-bar {
+    margin-right: auto;
+    --mat-form-field-container-height: 40px;
+    --mat-form-field-container-vertical-padding: 12px;
+  }
+  .search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    margin-right:auto;
+    width: 100%;
+    &::ng-deep {
+      .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+      }
+      .mat-mdc-form-field{
+        max-width: 100%;
+      }
+    }
+  }
+  @media screen  and (min-width: 769px) {
+    flex-direction: row;
+    align-items: center;
+    .search{
+      width: 100%;
+      gap: 20px;
+    }
+  }
+  @media screen  and (min-width: 1300px) {
+    flex-direction: row;
+    align-items: center;
+    .search{
+      gap: 20px;
+      width: 380px;
+    }
+    .search-bar{
+
+    }
+  }
+}
+.event-bottom-controls{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 32px;
+  justify-content: center;
+}
+
+.no-items {
+  margin: 60px 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.loader {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  color: var(--primary);
+  align-items: center;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  background: white;
+  padding: 5px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  mat-spinner {
+    --mdc-circular-progress-size: 30px;
+    --mdc-circular-progress-active-indicator-width: 30px;
+    width: 30px !important;
+    height: 30px !important;
+  }
+}

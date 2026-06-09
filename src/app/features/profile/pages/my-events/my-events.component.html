@@ -1,0 +1,29 @@
+<h1 class="title">Доступні опитувальники</h1>
+
+<ul class="event-list">
+  @for (event of eventList(); track event.id) { @if (!event.isPostEventReport) {
+  <li class="event-item">
+    <app-event
+      [event]="event"
+      [buttons]="buttons()"
+      [isAdmin]="isAdmin()"
+      (deleteEventClick)="delete($event)"
+      (navToEventClick)="getEvent($event)"
+    ></app-event>
+  </li>
+  } } @empty {
+  <li class="no-items">Немає доступних опитувальників</li>
+  }
+</ul>
+
+<app-button
+  [title]="'Створити опитувальник'"
+  (buttonClick)="getEvent()"
+  class="create-new-button__theme"
+>
+  <span class="create-icon"></span>
+</app-button>
+
+@if (isLoaderShown()) {
+  <app-full-page-loader></app-full-page-loader>
+}

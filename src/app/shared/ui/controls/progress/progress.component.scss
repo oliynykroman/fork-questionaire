@@ -1,0 +1,98 @@
+.progress-control {
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mainText);
+  background: var(--lightGray);
+  width: 100%;
+  padding: 13px 13px;
+  margin: 0 auto;
+  @media screen and (min-width: 950px) {
+    padding: 13px 40px;
+  }
+
+  &.no-label {
+    max-width: 380px;
+    @media screen and (min-width: 950px) {
+      padding: 13px 20px;
+    }
+
+    .progress-label {
+      display: none;
+    }
+
+    .progress-slider-container {
+      max-width: initial;
+    }
+  }
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 8px;
+  @media screen and (min-width: 1200px) {
+    flex-wrap: nowrap;
+  }
+}
+
+.progress-label {
+  margin-right: auto;
+  text-align: left;
+  max-width: 146px;
+  flex-shrink: 0;
+}
+
+.progress-slider-container {
+  display: flex;
+  align-items: center;
+  flex-shrink: 1;
+  justify-content: flex-end;
+  width: 100%;
+  @media screen and (min-width: 769px) {
+    max-width: 286px;
+  }
+
+  .progress-slider {
+    width: 100%;
+  }
+}
+
+.progress-input-container {
+  position: relative;
+  background: var(--white);
+  margin-left: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 5px;
+  flex-grow: 0;
+  padding: 7px 10px 7px 2px;
+  min-width: 53px;
+  font-weight: 500;
+  font-size: 13px;
+  flex-shrink: 0;
+
+  .progress-input {
+    padding: 0;
+    border: none;
+    outline: none;
+    appearance: none;
+    box-shadow: none;
+    text-align: right;
+    margin-right: 0;
+    width: 36px;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+}
+

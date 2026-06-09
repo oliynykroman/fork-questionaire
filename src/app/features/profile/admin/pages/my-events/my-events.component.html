@@ -1,0 +1,75 @@
+<h1 class="title">Your Events</h1>
+
+<div class="event-top-controls">
+  @if (searchForm) {
+    <form class="search" [formGroup]="searchForm" (ngSubmit)="search()">
+      <mat-form-field appearance="outline" class="search-bar">
+        <input matInput type="text" formControlName="search" placeholder="Search...">
+        @if (searchValue) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()" type="reset">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+      <button matSuffix mat-icon-button aria-label="Search" type="submit">
+        <mat-icon>search</mat-icon>
+      </button>
+    </form>
+  }
+
+  <app-button
+    [title]="'Download Master Report'"
+    (buttonClick)="downloadMasterReport()"
+    class="create-new-button__theme"
+  >
+    <span class="create-icon"></span>
+  </app-button>
+  <app-button
+    [title]="'Recalculate All'"
+    (buttonClick)="recalculateAll()"
+    class="create-new-button__theme"
+  >
+    <span class="create-icon"></span>
+  </app-button>
+</div>
+
+<ul class="event-list">
+  @for (event of eventList() | paginate: {
+    itemsPerPage: pageSize,
+    currentPage: page(),
+    totalItems: totalPages()
+  }; track event.id) {
+    @if (!event.isPostEventReport) {
+      <li class="event-item">
+        <app-event
+          [event]="event"
+          [buttons]="buttons()"
+          [isAdmin]="isAdmin()"
+          (deleteEventClick)="delete($event)"
+          (recalculateClick)="recalculate($event)"
+          (getReportClick)="getReport($event, event.name)"
+          (navToEventClick)="getEvent($event)"
+          (createPostEventReportClick)="createPostEventReport($event)"
+        ></app-event>
+      </li>
+    }
+  } @empty {
+    <li class="no-items">There are no items. Please create first</li>
+  }
+</ul>
+
+<div class="event-bottom-controls">
+  <pagination-controls (pageChange)="pageChange($event)"
+                       class="pagination"></pagination-controls>
+</div>
+@if (isLoaderShown()) {
+  <app-full-page-loader></app-full-page-loader>
+}
+<iframe id="pdf-frame" style="opacity: 0; height: 0; width: 0; visibility: hidden; overflow: hidden"></iframe>
+
+@if (pdfIsLoading()) {
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+    <p>Report generation</p>
+  </div>
+}

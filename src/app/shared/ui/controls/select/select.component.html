@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline">
+  <mat-select [formControl]="control" (selectionChange)="triggerUpdateValue()">
+    @for (option of element().options; track option) {
+      <mat-option [value]="option.value">{{ option.label }}</mat-option>
+    }
+  </mat-select>
+  @if (element().suffixLabel) {
+    <span matTextSuffix>{{ element().suffixLabel }}</span>
+  }
+</mat-form-field>
+

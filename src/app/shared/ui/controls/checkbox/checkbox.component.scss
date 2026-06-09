@@ -1,0 +1,35 @@
+.checkbox {
+  background: var(--lightGray);
+  border-radius: 5px;
+  padding-left: 13px;
+  --mat-sys-primary: var(--secondary);
+  --mdc-checkbox-state-layer-size:40px;
+  display: flex;
+
+
+  &::ng-deep {
+    .mdc-label {
+      padding: 20px 20px 20px 6px;
+      background: var(--lightGray);
+      border-radius: 5px;
+      font-weight: 500;
+      font-size: 14px;
+      text-align: left;
+    }
+    .mdc-checkbox__background {
+      width: 23px;
+      height: 23px;
+      background: var(--mat-sys-primary);
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+
+      svg {
+        width: 14px;
+        height: 14px;
+        top: 2px;
+        left: 2px;
+      }
+    }
+  }
+}

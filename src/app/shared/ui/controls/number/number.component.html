@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline">
+  <input matInput type="number" [formControl]="control" class="appearance-none" autocomplete="off" (blur)="triggerUpdateValue()">
+  @if (element().suffixLabel) {
+    <span matSuffix>{{ element().suffixLabel }}</span>
+  }
+</mat-form-field>

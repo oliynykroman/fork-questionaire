@@ -1,0 +1,12 @@
+@if (element()) {
+  <mat-radio-group [formControl]="control" class="radio-group">
+    @for (option of element().options; track option) {
+      <mat-radio-button [value]="option.value" class="radio-button" (change)="triggerUpdateValue()">
+        {{ option.label }}
+        @if (element().suffixLabel) {
+          <span>{{ element().suffixLabel }}</span>
+        }
+      </mat-radio-button>
+    }
+  </mat-radio-group>
+}

@@ -1,0 +1,40 @@
+<div class="event">
+  <div class="event-details">
+    <h3 class="name">{{ event().name }}</h3>
+    <span class="delegates">Питань: {{ event().topics.length }}</span>
+    <div class="event-info">
+      <span class="year">{{ event().year }}</span>
+      <span class="phase">{{ event().phase }}</span>
+      <span class="reporting-or-testing">{{ event().reportingOrTesting }}</span>
+      <span class="bureau">{{ event().bureau }}</span>
+    </div>
+    @if (event().emissionPerDelegatesIndex; as emission) {
+      <app-total-co2-saved
+        [totalAmount]=" '' + emission"
+        [description]="'Індекс'"
+        class="total-co--theme"
+      ></app-total-co2-saved>
+    }
+  </div>
+  <div class="event-controls">
+    @if (eventIsNotCompleteRoute() || (event().topics | uncompletedTopics)) {
+      <app-button
+        class="event-bth--theme"
+        [title]="buttons.continueButton"
+        (buttonClick)="navToSkippedQuestion(event().id)"
+      ></app-button>
+    } @else {
+      <app-button
+        class="event-bth--theme"
+        [title]="buttons.editEventButton"
+        (buttonClick)="navToEventEvent(event().id)"
+      ></app-button>
+    }
+    <app-button
+      [background]="'black'"
+      [title]="buttons.deleteEventButton"
+      (buttonClick)="deleteEvent(event())"
+      class="event-bth--theme delete-button--theme"
+    ></app-button>
+  </div>
+</div>

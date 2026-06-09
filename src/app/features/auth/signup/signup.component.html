@@ -1,0 +1,49 @@
+<main class="layout">
+  <app-nav-bar class="nav-bar--theme" [hideNavButton]="true"> </app-nav-bar>
+  <article class="content">
+    <h1 class="title">Sign up</h1>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form">
+      <mat-label  class="form-label">Name</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="name" type="text" />
+        @if (name.dirty && name.errors?.['required']) {
+        <mat-error>Name is required</mat-error>
+        } @if (name.dirty && name.errors?.['minlength']) {
+        <mat-error>Minimum 3 characters required</mat-error>
+        }
+      </mat-form-field>
+      <mat-label  class="form-label">E-mail</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="email" type="email" />
+        @if (email.dirty && email.errors?.['required']) {
+        <mat-error>Email is required</mat-error>
+        } @if (email.dirty && email.errors?.['email']) {
+        <mat-error>Invalid e-mail</mat-error>
+        }
+      </mat-form-field>
+      <mat-label  class="form-label">Password</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="password" type="password" />
+        @if (password.dirty && password.errors?.['required']) {
+        <mat-error>Password is required</mat-error>
+        } @if (password.dirty && password.errors?.['minlength']) {
+        <mat-error>Minimum 8 characters required</mat-error>
+        }
+      </mat-form-field>
+      <mat-label  class="form-label">Confirm Password</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="confirmPassword" type="password" />
+        @if (confirmPassword.dirty && confirmPassword.errors?.['required']) {
+        <mat-error>Please confirm your password</mat-error>
+        } @if (confirmPassword.dirty && confirmPassword.errors?.['mismatch']) {
+        <mat-error>Passwords do not match</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" [disabled]="signupForm.invalid">
+        Sign up
+      </button>
+    </form>
+    <button mat-button [routerLink]="'/sign-in'">Back to login</button>
+  </article>
+</main>

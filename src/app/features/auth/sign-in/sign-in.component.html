@@ -1,0 +1,24 @@
+<main class="layout">
+  <app-nav-bar class="nav-bar--theme"
+               [hideNavButton]="true">
+
+  </app-nav-bar>
+  <article class="content">
+    <h1 class="title">Вхід до опитувальника</h1>
+    @if (signInForm) {
+      <form [formGroup]="signInForm" (ngSubmit)="submit()" class="form">
+        <mat-label class="form-label">Email</mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="email" type="email"/>
+        </mat-form-field>
+        <mat-label class="form-label">Пароль</mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="password" type="password"/>
+        </mat-form-field>
+        <button mat-flat-button type="submit" [disabled]="signInForm.invalid">
+          Увійти
+        </button>
+      </form>
+    }
+  </article>
+</main>

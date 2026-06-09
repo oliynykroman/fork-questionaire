@@ -1,0 +1,134 @@
+.pagination {
+  .ngx-pagination {
+    margin-left: 0;
+    margin-bottom: 1rem;
+    font-size: 18px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    &:before, &:after {
+      display: none;
+    }
+
+    .disabled {
+      cursor: default;
+      border: 1px solid var(--lightGray2);
+      color: var(--lightGray2);
+    }
+
+    .pagination-previous {
+      font-size: 0;
+      min-width: 40px;
+      min-height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 5px;
+      [aria-disabled='true'] {
+        display: none;
+      }
+      a{
+        &:before{
+          margin: 0;
+        }
+      }
+    }
+
+    .pagination-next {
+      font-size: 0;
+      min-width: 40px;
+      min-height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-radius: 5px;
+      [aria-disabled='true'] {
+        display: none;
+      }
+      a{
+        &:after{
+          margin: 0;
+        }
+      }
+      &.disabled {
+        &::after{
+          margin-left: 0 !important;
+        }
+      }
+    ;
+    }
+
+    li {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      position: relative;
+
+      &:after, &:before{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        height: 40px;
+        line-height: 38px;
+        font-size: 25px;
+      }
+    }
+
+    .current {
+      color: var(--white);
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      cursor: default;
+      border-radius: 5px;
+      min-width: 40px;
+      min-height: 30px;
+      line-height: 30px;
+      text-align: center;
+      padding: 5px;
+    }
+
+    .show-for-sr {
+      display: none !important;
+    }
+
+    .small-screen {
+      display: none !important;
+    }
+
+    a, button {
+      cursor: pointer;
+      transition: all .3s ease;
+      outline: none;
+      border-radius: 5px;
+      min-width: 40px;
+      min-height: 30px;
+      line-height: 30px;
+      text-align: center;
+      padding: 5px;
+      border: 1px solid var(--mainText);
+      color: var(--mainText);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      &:after, &:before{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        height: 40px;
+        line-height: 38px;
+        font-size: 25px;
+      }
+
+      &:hover {
+        color: var(--white);
+        border: 1px solid var(--primary);
+        background: var(--primary);
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<h1 class="title">Edit profile</h1>
+<form [formGroup]="signupForm" (ngSubmit)="updateUser()" class="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" type="text" />
+    @if (name.dirty && name.errors?.['required']) {
+    <mat-error>Name is required</mat-error>
+    } @if (name.dirty && name.errors?.['minlength']) {
+    <mat-error>Minimum 3 characters required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>E-mail</mat-label>
+    <input matInput formControlName="email" type="email" />
+    @if (email.dirty && email.errors?.['required']) {
+    <mat-error>Email is required</mat-error>
+    } @if (email.dirty && email.errors?.['email']) {
+    <mat-error>Invalid e-mail</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Old Password</mat-label>
+    <input matInput formControlName="oldPassword" type="password" />
+    @if (oldPassword.dirty && oldPassword.errors?.['required']) {
+    <mat-error>Password is required</mat-error>
+    } @if (oldPassword.dirty && oldPassword.errors?.['minlength']) {
+    <mat-error>Minimum 8 characters required</mat-error>
+    } @if (oldPassword.dirty && oldPassword.errors?.['misingOldPassword']) {
+    <mat-error>Missing old password</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>New Password</mat-label>
+    <input matInput formControlName="newPassword" type="password" />
+    @if (newPassword.dirty && newPassword.errors?.['minlength']) {
+    <mat-error>Minimum 8 characters required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Confirm Password</mat-label>
+    <input matInput formControlName="confirmPassword" type="password" />
+    @if (confirmPassword.dirty && confirmPassword.errors?.['required']) {
+    <mat-error>Please confirm your password</mat-error>
+    } @if (confirmPassword.dirty && confirmPassword.errors?.['mismatch']) {
+    <mat-error>Passwords do not match</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-flat-button type="submit" [disabled]="signupForm.invalid">
+    Save
+  </button>
+</form>

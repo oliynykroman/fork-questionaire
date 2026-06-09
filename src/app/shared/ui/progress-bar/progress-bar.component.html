@@ -1,0 +1,4 @@
+<div class="progress-block">
+<!--  <p class="progress-title">Question {{ value() }}/{{ total() }}</p>-->
+  <mat-progress-bar mode="determinate" [value]="value() | stepProgress:total()" class="progress-bar"></mat-progress-bar>
+</div>

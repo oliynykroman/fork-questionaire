@@ -1,0 +1,52 @@
+:host {
+  --borderColor: var(--mainText);
+  --color: var(--mainText);
+  --borderRadius: 5px;
+  --fontSize: 14px;
+  --lineHeight: 1.214;
+  --fontWeigth: 700;
+  --backgroundColor: var(--white);
+  --minWidth: 100px;
+  --padding: 15px 28px;
+  --gap:10px;
+}
+
+.btn {
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  border-radius: var(--borderRadius);
+  background-color: var(--backgroundColor);
+  font-size: var(--fontSize);
+  font-weight: var(--fontWeigth);
+  line-height: var(--lineHeight);
+  color: var(--color);
+  min-width: var(--minWidth);
+  padding: var(--padding);
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  transition: all .3s ease;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap:var(--gap);
+  cursor: pointer;
+
+  &.black {
+    --backgroundColor: var(--secondary);
+    --borderColor: var(--secondary);
+    --color: var(--white);
+  }
+
+  @media screen and (max-width: 950px) {
+    --fontSize: 12px;
+    --lineHeight: 1.214;
+    --fontWeigth: 600;
+    --minWidth: 100px;
+    --padding: 8px 8px;
+    --gap: 10px;
+  }
+}

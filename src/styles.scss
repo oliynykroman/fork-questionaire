@@ -1,0 +1,109 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@use 'assets/scss/mat-slider';
+@use 'assets/scss/mat-checkbox';
+@use 'assets/scss/mat-button';
+@use 'assets/scss/mat-select';
+@use 'assets/scss/mat-form-field';
+@use 'assets/scss/mat-radio';
+@use 'assets/scss/mat-input';
+@use 'assets/scss/mat-datepicker';
+@use 'assets/scss/mat-loader';
+@use 'assets/scss/mat-snackbar';
+@use 'assets/scss/pagination';
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Arial,
+    density: 0,
+  ));
+}
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #E8EEF5;
+  --secondary: #4B5563;
+  --mainText: #1F2937;
+  --white: #FFFFFF;
+  --black: #000000;
+  --lightGray: #F5F7FA;
+  --lightGray2: #D6DDE6;
+  --gray: #6B7280;
+  --darkBlue: #334155;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--mainText);
+  line-height: 1.2;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+.author {
+  color: var(--white);
+
+  h3 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: clamp(1.875rem, 6.78vw + -4.227rem, 3.125rem);
+    line-height: clamp(2.25rem, 8.136vw + -5.072rem, 3.75rem);
+    text-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 15px;
+  }
+
+  .name {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.2;
+    margin: 0;
+    text-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+  }
+}
+
+p {
+  a {
+    color: var(--primary);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.form-label{
+  margin-bottom: -15px;
+}
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  cursor:pointer;
+  display:block;
+  width:8px;
+  color: #333;
+  text-align:center;
+  position:relative;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

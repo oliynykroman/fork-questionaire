@@ -1,0 +1,40 @@
+@use '@angular/material' as mat;
+
+
+:root {
+  @include mat.button-overrides((
+    outlined-container-shape:5px,
+    outlined-label-text-color: var(--mainText),
+    outlined-label-text-size:14px,
+    outlined-label-text-weight:700,
+    outlined-horizontal-padding:30px,
+    outlined-container-height:48px,
+    outlined-hover-state-layer-opacity:.1,
+    outlined-state-layer-color:var(--gray),
+    outlined-outline-color:var(--mainText),
+    filled-container-height:48px,
+    filled-horizontal-padding:30px,
+    filled-container-shape:5px,
+    filled-label-text-color: var(--white),
+    filled-label-text-size:14px,
+    filled-label-text-weight:700,
+    filled-container-color: var(--secondary),
+    text-label-text-weight:500,
+    text-label-text-color:var(--darkBlue),
+    text-container-shape:5px,
+    text-with-icon-horizontal-padding:16px,
+    text-icon-offset:0,
+    text-icon-spacing:0,
+    text-state-layer-color:var(--lightGray)
+  ));
+}
+
+.linear-button {
+  mat-icon {
+    color: var(--black);
+    font-size: 30px !important;
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 0;
+  }
+}

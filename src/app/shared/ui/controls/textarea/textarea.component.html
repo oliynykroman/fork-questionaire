@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline">
+  <textarea matInput [formControl]="control" (blur)="triggerUpdateValue()" autocomplete="off"></textarea>
+  @if (element().suffixLabel) {
+    <span matSuffix>{{ element().suffixLabel }}</span>
+  }
+</mat-form-field>

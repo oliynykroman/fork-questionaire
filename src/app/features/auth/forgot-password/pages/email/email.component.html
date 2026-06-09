@@ -1,0 +1,13 @@
+<h1 class="title">Email</h1>
+@if (emailForm) {
+  <form [formGroup]="emailForm" (ngSubmit)="submit()" class="form">
+    <mat-label class="form-label">Email</mat-label>
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="email" type="email"/>
+    </mat-form-field>
+    <button mat-flat-button type="submit" [disabled]="emailForm.invalid">
+      Send
+    </button>
+  </form>
+  <button mat-button [routerLink]="'/sign-in'">Back to login</button>
+}

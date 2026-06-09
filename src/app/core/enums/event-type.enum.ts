@@ -1,0 +1,7 @@
+export enum EventTypeEnum {
+  CONFERENCE = 'CONFERENCE',
+  DINNER = 'DINNER',
+  MEETING = 'MEETING',
+  EXHIBITION = 'EXHIBITION',
+  CONGRESS = 'CONGRESS',
+}

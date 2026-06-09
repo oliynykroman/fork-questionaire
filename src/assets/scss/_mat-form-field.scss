@@ -1,0 +1,37 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.form-field-overrides((
+    container-text-size: 14px,
+    container-text-weight: 500,
+    filled-container-color: var(--mainText),
+    outlined-outline-width:1px,
+    outlined-focus-outline-width:1px,
+    outlined-caret-color: var(--mainText),
+    outlined-focus-label-text-color: var(--mainText),
+    outlined-input-text-color: var(--mainText),
+    outlined-input-text-placeholder-color: var(--gray),
+    outlined-label-text-size: 14px,
+    outlined-label-text-weight: 500,
+    outlined-outline-color:var(--lightGray),
+    outlined-focus-outline-color:var(--lightGray),
+    outlined-hover-outline-color:var(--lightGray),
+    container-height:60px,
+    filled-label-display:none,
+    outlined-container-shape:5px
+  ));
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+  max-width: 380px;
+
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+    background: var(--lightGray);
+  }
+  .mat-mdc-form-field-infix{
+    position: relative;
+    z-index: 9;
+  }
+}

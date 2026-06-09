@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+
+.progress-block {
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+
+  .progress-title {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  .progress-bar {
+    border-radius: 5px;
+    --mdc-linear-progress-track-shape: 4px;
+    @include mat.progress-bar-overrides((
+      active-indicator-color: var(--mainText),
+      track-color: rgba(23, 65, 15, .2),
+      track-height: 5px,
+      active-indicator-height: 5px,
+      track-shape: 5px))
+  }
+}
+
+

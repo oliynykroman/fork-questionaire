@@ -1,0 +1,30 @@
+@if (element(); as element) {
+  <div class="progress-control" [ngClass]="{'no-label': !element.label }">
+    <div class="progress-container">
+      @if(element.label){
+      <mat-label class="progress-label">{{ element.label }}</mat-label>
+      }
+      <div class="progress-slider-container">
+        <mat-slider
+          class="progress-slider"
+          [min]="0"
+          [max]="element.max" step="1"
+          [displayWith]="formatLabel"
+        >
+          <input matSliderThumb [formControl]="control" (dragStart)="startDrag($event)" (dragEnd)="endDrag($event)" (valueChange)="change($event)" >
+        </mat-slider>
+        <div class="progress-input-container">
+          <input class="progress-input"
+                 [formControl]="progressControl"
+                 (change)="updateBlurControlsValue($event)"
+                 type="number"
+                 autocomplete="off"
+          >
+          @if (element.suffixLabel) {
+            <span>{{ element.suffixLabel }}</span>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

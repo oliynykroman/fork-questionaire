@@ -1,0 +1,10 @@
+<main class="layout">
+  <app-nav-bar-routes
+    [navigation]="navStructure()"
+    (navigationClick)="navigationEvent($event)"
+    class="nav-bar--theme">
+  </app-nav-bar-routes>
+  <article class="content">
+    <router-outlet></router-outlet>
+  </article>
+</main>

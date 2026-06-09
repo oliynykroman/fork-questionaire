@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+:root {
+  @include mat.datepicker-overrides((
+    calendar-text-size: 15px,
+    calendar-body-label-text-size:15px,
+    calendar-body-label-text-weight:500,
+    calendar-date-selected-state-text-color: var(--white),
+    calendar-date-selected-state-background-color:var(--mainText),
+    calendar-date-today-outline-color:var(--mainText),
+    calendar-date-in-range-state-background-color: var(--lightGray)
+  ));
+}

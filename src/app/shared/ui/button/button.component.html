@@ -1,0 +1,16 @@
+@if (link()) {
+  <a
+    [routerLink]="link()"
+    [ngClass]="background()"
+    class="btn">
+    <ng-content/>
+    <span class="title">{{ title() }}</span>
+  </a>
+} @else {
+  <button
+    (click)="onClick()"
+    [ngClass]="background()"
+    class="btn">
+    <span class="title">{{ title() }}</span>
+  </button>
+}

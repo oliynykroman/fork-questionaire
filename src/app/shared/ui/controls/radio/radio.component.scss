@@ -1,0 +1,49 @@
+@use '@angular/material' as mat;
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-button {
+  --mat-sys-on-surface: var(--mainText);
+  --mat-sys-body-medium-size: 14px;
+  --mat-sys-body-medium-weight: 700;
+  --mat-sys-on-surface-variant: var(--secondary);
+  --mat-sys-primary: var(--secondary);
+
+  &.mat-mdc-radio-checked {
+    &::ng-deep {
+      .mdc-form-field {
+        background: var(--lightGray2);
+      }
+    }
+  }
+
+  &::ng-deep {
+    .mdc-form-field {
+      background: var(--lightGray);
+      border-radius: 5px;
+    }
+
+    .mdc-label {
+      padding: 20px 20px 20px 0;
+    }
+
+    .mdc-radio {
+      margin-left: 10px;
+    }
+
+    .mdc-radio__outer-circle {
+      background: var(--secondary);
+    }
+
+    .mdc-radio__native-control:enabled:checked + .mdc-radio__background .mdc-radio__inner-circle {
+      --mat-sys-primary: var(--white);
+    }
+  }
+}

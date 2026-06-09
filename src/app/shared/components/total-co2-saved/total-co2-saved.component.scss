@@ -1,0 +1,60 @@
+:host {
+  --totalSize: 45px;
+  --totalLineHeight: 1.2;
+  --totalWeight: 800;
+  --totalColor: var(--mainText);
+  --totalLegendSize: 12px;
+  --totalLegendWeight: 500;
+  --totalLegendColor: var(--gray);
+  --totalButtonInfoSize: 13px;
+  --totalLegendButtonMargin: 10px;
+  --totalLegendMarginTop: -3px;
+  --totalLegendButtoncentering: flex-end;
+}
+
+.total {
+  display: flex;
+  max-width: 205px;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.total-amount {
+  color: var(--totalColor);
+  font-size: var(--totalSize);
+  line-height: var(--totalLineHeight);
+  font-weight: var(--totalWeight);
+  z-index: 1;
+  position: relative;
+}
+
+.total-legend {
+  color: var(--totalLegendColor);
+  font-size: var(--totalLegendSize);
+  line-height: var(--totalLineHeight);
+  font-weight: var(--totalLegendWeight);
+  margin-top: var(--totalLegendMarginTop);
+  display: flex;
+  flex-direction: row;
+  justify-content: var(--totalLegendButtoncentering);
+  z-index: 2;
+  position: relative;
+}
+
+.total-button {
+  flex-shrink: 0;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 0 0 10px;
+  cursor: pointer;
+
+  svg {
+    color:var(--totalLegendColor);
+    width: var(--totalButtonInfoSize);
+    height: var(--totalButtonInfoSize);
+  }
+}

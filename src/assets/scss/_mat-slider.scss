@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+
+:root {
+  @include mat.slider-overrides((
+    active-track-height:3px,
+    inactive-track-height:2px,
+    inactive-track-color:var(--mainText),
+    active-track-color: var(--mainText),
+    hover-handle-color: var(--lightGray),
+    ripple-color:var(--lightGray),
+    handle-color: var(--mainText),
+    focus-handle-color: hover-handle-color,
+    hover-state-layer-color: hover-handle-color,
+    focus-state-layer-color:hover-handle-color,
+    label-container-color: var(--mainText),
+    label-label-text-color:var(--white),
+    label-label-text-size: 12px,
+    handle-height:13px,
+    handle-width:13px
+  ));
+}

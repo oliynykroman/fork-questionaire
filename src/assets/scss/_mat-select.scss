@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+:root {
+  @include mat.select-overrides((
+    panel-background-color:var(--lightGray),
+    container-elevation-shadow:0px 10px 13px -7px rgba(0,0,0,.3)
+  ));
+}
+
+.mat-mdc-select-value-text {
+  z-index: 9;
+  position: relative;
+}

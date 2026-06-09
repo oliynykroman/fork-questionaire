@@ -1,0 +1,21 @@
+.nav-bar--theme {
+  --pageTitleMarginTop: 176px;
+}
+
+.layout {
+  .content {
+    padding: 100px 20px 20px 20px;
+
+  }
+
+  @media screen and (min-width: 769px) {
+    display: grid;
+    grid-template-columns: 312px 1fr;
+    .content {
+      padding: 84px clamp(1.25rem, 16.393vw + -6.619rem, 3.125rem);
+      height: 100vh;
+      overflow-y: auto;
+    }
+  }
+}
+

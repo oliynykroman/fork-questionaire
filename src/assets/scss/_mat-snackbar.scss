@@ -1,0 +1,14 @@
+.mdc-snackbar {
+  &.success{
+    --mat-sys-inverse-surface: var(--primary);
+    --supporting-text-color: var(--mainText);
+    --button-color: var(--mainText);
+    --mat-sys-inverse-primary: var(--white);
+  }
+  &.error{
+    --mat-sys-inverse-surface: red;
+    --supporting-text-color: var(--white);
+    --button-color: var(--white);
+    --mat-sys-inverse-primary: var(--white);
+  }
+}

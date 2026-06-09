@@ -1,0 +1,45 @@
+@if (isMobile()) {
+  <div class="mobile-nav">
+    @if (!hideNavButton()) {
+      <button class="burger"
+              aria-label="Toggle navigation menu"
+              [ngClass]="{'active':navBarService.isNavBarVisible()}"
+              (click)="toggleNavBar()">
+        <span class="burger-line"></span>
+      </button>
+    }
+    @if (navigation().title) {
+      <h2 class="page-title">{{ navigation().title }}</h2>
+    }
+  </div>
+}
+@if (navigation()) {
+  <nav class="nav" [ngClass]="{'visible':navBarService.isNavBarVisible()}">
+    <ng-content select=".top"></ng-content>
+    @if (navigation().title && !isMobile()) {
+      <h2 class="page-title">{{ navigation().title }}</h2>
+    }
+    @if (navigation().items) {
+      <ul class="nav-list">
+        @for (item of navigation().items; track item.id) {
+          <li class="nav-item">
+            <button
+              (click)="onClick(item)"
+              class="nav-link {{item.status | lowercase}}"
+              [ngClass]="{'current': item.isCurrent}"
+            >
+              <span class="arrow"></span>
+              <span>{{ item.title }}</span>
+            </button>
+          </li>
+        }
+      </ul>
+    }
+    <div class="bottom">
+      <ng-content select=".bottom"></ng-content>
+    </div>
+    <a href="/" class="logo">
+      <p>Веб-сайт-опитувальник</p>
+    </a>
+  </nav>
+}
